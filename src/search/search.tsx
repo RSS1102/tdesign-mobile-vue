@@ -49,7 +49,17 @@ export default defineComponent({
 
     const inputValueChangeHandle = (e: Event) => {
       const { value } = e.target as HTMLInputElement;
-      searchValue.value = value;
+      // const { allowInputOverMax, maxcharacter } = props;
+      // if (!allowInputOverMax && maxcharacter && maxcharacter > 0 && !Number.isNaN(maxcharacter)) {
+      //   const { length = 0, characters = '' } = getCharacterLength(value, maxcharacter) as {
+      //     length: number;
+      //     characters: string;
+      //   };
+      //   searchValue.value = characters;
+      // } else {
+      //   searchValue.value = value;
+      // }
+
       nextTick(() => setInputValue(searchValue.value));
     };
 
@@ -128,6 +138,7 @@ export default defineComponent({
             {readerLeftIcon()}
             <input
               ref={inputRef}
+              maxlength={props.maxlength || -1}
               value={searchValue.value}
               type="search"
               class={inputClasses.value}
